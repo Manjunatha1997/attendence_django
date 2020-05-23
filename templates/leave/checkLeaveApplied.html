@@ -1,0 +1,62 @@
+{% extends 'mca/index.html' %}
+
+{% block home %}
+<li class="nav-item">
+    <a href="/mca/" class="nav-link">|Home|</a>
+</li>
+{% endblock %}
+
+{% block checkleaveapplied %}
+    <li class="nav-item active">
+        <a href="/leave/checkLeaveApplied/" class="nav-link">|Check Leave Applied|</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="bg-info text-white ">
+        <th>Roll number</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form method="post">
+            {% if not all_data %}
+                <tr>
+                    <td colspan="5" class="h3 text-center text-primary">No one applied for leave</td>
+                </tr>
+            {% endif %}
+
+        {% for data in all_data %}
+        <tr>
+
+            <td> {{ data.rollno }}</td>
+            <td>{{ data.start_date }}</td>
+            <td>{{ data.end_date }}</td>
+            <td>{{ data.reason }}</td>
+
+            <td>
+            <div class="dropdown dropright">
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">{{ data.status }}</button>
+                <div class="dropdown-menu">
+                    <li><a href="/leave/approved/{{data.id}}/"> Approved</a></li><hr>
+                    <li><a href="/leave/canceled/{{data.id}}/"> Canceled</a></li>
+                </div>
+            </div>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
+

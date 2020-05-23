@@ -1,0 +1,46 @@
+{% extends 'student/index.html' %}
+{% block home %}
+    <li class="nav-item ">
+        <a href="/student/" class="nav-link">|Home|</a>
+    </li>
+{% endblock %}
+
+{% block leavestatus %}
+    <li class="nav-item active">
+        <a href="/leave/leaveStatus/{{ user.username }}/" class="nav-link active">|Leave Status|</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr class="bg-info text-white text-capitalize">
+    <th>roll number</th>
+    <th>start date</th>
+    <th>end date</th>
+    <th>reason</th>
+    <th>status</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in all_data %}
+        <tr>
+            <td>{{ data.rollno }}</td>
+            <td>{{ data.start_date }}</td>
+            <td>{{ data.end_date }}</td>
+            <td>{{ data.reason }}</td>
+            {% if data.status == 'Approved' %}
+            <td class="text-success">{{ data.status }}</td>
+            {% elif data.status == 'Canceled' %}
+            <td class="text-danger">{{ data.status }}</td>
+            {% else%}
+            <td class="text-warning">{{ data.status }}</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}

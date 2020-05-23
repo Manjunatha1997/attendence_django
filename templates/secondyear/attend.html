@@ -1,0 +1,53 @@
+{% extends 'secondyear/index.html' %}
+{% block home %}
+<li class="nav-item active">
+    <a href="/mca/" class="nav-link text-bold h4">&leftarrow;</a>
+</li>
+<li class="nav-item">
+    <a href="/secondyear/index/" class="nav-link">|Home|</a>
+</li>
+{% endblock %}
+
+{% block attend %}
+    <li class="nav-item active">
+        <a href="/secondyear/attend/" class="nav-link">|Attend|</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-info">Attendence  Page</h1>
+    <form>
+        <div class="bg-light">
+            {% for message in messages %}
+               <h3 class="text-danger text-capitalize text-center">  {{ message }} </h3>
+            {% endfor %}
+        </div>
+    <table  class="table table-hover table-bordered">
+        <tr>
+            <td colspan="3"><input type="date" class="form-control" name="date" required></td>
+        </tr>
+
+        <tr class="bg-primary text-white">
+            <th>Rollno</th>
+            <th>Name</th>
+            <th>Select</th>
+        </tr>
+        {% for data in all_data %}
+        <tr class="bg-light">
+            <td>{{data.rollno}}</td>
+            <td>{{data.name}}</td>
+            <td><input type="checkbox"   name="{{data.rollno}}"/></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3">
+                <center><input type="submit" class="btn btn-success" value="submit attendence"></center>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+
+{% endblock %}
+

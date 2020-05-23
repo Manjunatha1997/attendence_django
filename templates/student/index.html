@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>attend</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'js/bootstrap.min.js' %}" rel="stylesheet" type="text/js">
+    <script src="{% static 'js/jquery-3.3.1.js' %}" rel="stylesheet" type="text/jquery"></script>
+
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+
+
+</head>
+<body>
+<div class="container">
+
+    <nav class="navbar navbar-dark">
+        <ul class="nav nav-tabs">
+            {% block home %}
+            <li class="nav-item active">
+                <a href="/student/" class="nav-link active">|Home|</a>
+            </li>
+            {% endblock %}
+            {% block attendresult %}
+            <li class="nav-item">
+                <a href="/student/attendResult/{{ user.username }}/" class="nav-link">|Attend Result|</a>
+            </li>
+            {% endblock %}
+            {% block applyleave %}
+            <li class="nav-item">
+                <a href="/leave/applyLeave/" class="nav-link">|Apply Leave|</a>
+            </li>
+            {% endblock %}
+            {% block leavestatus %}
+            <li class="nav-item">
+                <a href="/leave/leaveStatus/{{ user.username }}/" class="nav-link">|Leave Status|</a>
+            </li>
+            {% endblock %}
+
+            <li class="nav-item ">
+                <a href="/student/logout/" class="nav-link">|Logout, {{ user.first_name }}|</a>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+
+
+{% block content %}
+<div class="container">
+
+    <div class="jumbotron">
+        <h1 class="text-center text-capitalize">Welcome {{user.first_name}}</h1>
+    </div>
+
+</div>
+
+{% endblock %}
+
+</body>
+</html>

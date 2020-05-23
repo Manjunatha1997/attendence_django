@@ -1,0 +1,46 @@
+{% extends 'student/index.html' %}
+{% block home %}
+<li class="nav-item ">
+    <a href="/student/" class="nav-link">|Home|</a>
+</li>
+{% endblock %}
+
+{% block applyleave %}
+<li class="nav-item active">
+    <a href="/leave/applyLeave/" class="nav-link active">|Apply Leave|</a>
+</li>
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h3 class="text-center text-primary">Apply Leave Here</h3>
+            {% for message in messages %}
+            <span class="text-primary text-capitalize">{{ message }}</span>
+            {% endfor %}
+         <form method="post">
+
+             {% csrf_token %}
+
+            {% for field in form %}
+            {{ field.label_tag }}
+            {{ field }}
+             <span class="text-danger">{{ field.errors }}</span>
+
+            {% endfor %}
+             <input type="submit" value="Apply Leave" class="btn btn-info mt-2">
+
+         </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

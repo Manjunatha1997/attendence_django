@@ -1,0 +1,79 @@
+{% extends 'thirdyear/index.html' %}
+
+{% block home %}
+<li class="nav-item active">
+    <a href="/mca/" class="nav-link text-bold h4">&leftarrow;</a>
+</li>
+<li class="nav-item">
+    <a href="/thirdyear/" class="nav-link">|Home|</a>
+</li>
+{% endblock %}
+
+{% block attendresult %}
+    <li class="nav-item active">
+        <a href="/thirdyear/attendResult/" class="nav-link">|Attend Result|</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-primary">Attend Result Page</h1>
+
+<!--<table class="table table-hover">-->
+<!--    <tr class="thead">-->
+<!--        <th>Date</th>-->
+<!--        <th>Roll Number</th>-->
+<!--        <th>Status</th>-->
+<!--        <th>Update</th>-->
+<!--        <th>Delete</th>-->
+<!--    </tr>-->
+<!--    {% for res in result %}-->
+<!--    <tr>-->
+<!--        <td>{{res.date}}</td>-->
+<!--        <td>{{res.rollno}}</td>-->
+<!--        <td>{{res.status}}</td>-->
+<!--        <td><a href="/update/{{ res.id }}" > Update</a></td>-->
+<!--        <td><a href="/delete/{{res.id}}" >Delete</a> </td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--</table>-->
+
+
+<div class="row">
+    <div class="col-md-5"></div>
+        <div class="form-inline">
+        <form action="/thirdyear/searchResult/">
+            <input type="date" class="form-control" name="date" required>
+            <input type="submit" class="btn btn-info" value="Search">
+        </form>
+        </div>
+    <div class="col-md-4"></div>
+</div>
+
+<table class="table table-hover mt-2 table-bordered">
+
+    <tr class="bg-info text-white">
+        <th>Date</th>
+        <th>Rollno</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+{% for data in all_data %}
+    <tr>
+        <td>{{ data.date }}</td>
+        <td><a href="/thirdyear/studentData/{{data.rollno}}/">{{ data.rollno }}</a></td>
+
+        <td>{{ data.status }}</td>
+        <td><a href="/thirdyear/update/{{ data.id }}/" class="btn btn-warning">Update</a></td>
+        <td><a href="/thirdyear/delete/{{data.id}}/" class=" btn btn-danger">Delete</a> </td>
+    </tr>
+
+{% endfor %}
+    </table>
+
+</div>
+
+
+{% endblock  %}

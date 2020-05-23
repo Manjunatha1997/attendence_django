@@ -1,0 +1,43 @@
+{% extends 'firstyear/index.html' %}
+
+{% block home %}
+<li class="nav-item active">
+    <a href="/firstyear/" class="nav-link text-bold h4">&leftarrow;</a>
+</li>
+<li class="nav-item">
+    <a href="/firstyear/" class="nav-link">|Home|</a>
+</li>
+
+{% endblock %}
+
+{% block showstudents %}
+    <li class="nav-item active">
+        <a href="/firstyear/show/" class="nav-link ">|Show All Students|</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <table class="table table-bordered">
+        <tr class="bg-info">
+        <th>Date</th>
+        <th>Roll Number</th>
+        <th>Status</th>
+
+        </tr>
+        {% for data in all_data %}
+        <tr>
+            <td>{{ data.date }}</td>
+            <td>{{ data.rollno }}</td>
+            {% if data.status == True %}
+            <td class="text-success">{{ data.status }}</td>
+            {% else %}
+            <td class="text-danger">{{data.status }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'secondyear/index.html' %}
+
+{% block home %}
+<li class="nav-item active">
+    <a href="/mca/" class="nav-link text-bold h4">&leftarrow;</a>
+</li>
+<li class="nav-item">
+    <a href="/secondyear/index/" class="nav-link">|Home|</a>
+</li>
+{% endblock %}
+
+{% block showstudents %}
+    <li class="nav-item active">
+        <a href="/secondyear/show/" class="nav-link ">|Show All Students|</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center text-primary">All Students Data</h1>
+<table class="table table-hover table-bordered">
+
+    <tr class="thead bg-info text-white">
+        <th>Rollno</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Delete</th>
+    </tr>
+
+{% for data in all_data %}
+    <tr class="tbody bg-light">
+        <td>
+            <a href="/secondyear/studentData/{{data.rollno}}/">{{ data.rollno }}</a>
+        </td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.phno }}</td>
+        <td><a href="/secondyear/deleteStudent/{{ data.rollno }}" >Delete</a> </td>
+    </tr>
+
+{% endfor %}
+    </table>
+
+</div>
+
+
+
+
+
+{% endblock  %}
